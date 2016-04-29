@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9 ie8"><![endif]-->
+<!--[if gt IE 8]><!--><html class="gt-ie8" lang="en"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"><![endif]-->
+	<!--[if gt IE 8]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"><!-- См. https://msdn.microsoft.com/ru-ru/library/ie/hh801214(v=vs.85).aspx -->
+	<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true"><!-- См. https://msdn.microsoft.com/ru-ru/library/ie/hh920753(v=vs.85).aspx -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex"/>
+	<title>Отправка денежного перевода</title>
+
+	<link href="css/font-awesome.css?v=4.2.0" rel="stylesheet"><!-- http://fontawesome.io/ -->
+	<!--[if lt IE 8]>
+		<link href="css/font-awesome-ie7.css?v=4.2.0" rel="stylesheet">
+	<![endif]-->
+
+	<link href="css/general.css" rel="stylesheet">
+	<link href="css/grid.css" rel="stylesheet">
+	<link href="css/menu.css" rel="stylesheet">
+	<link href="css/placeholder.css" rel="stylesheet">
+	<link href="css/block.css" rel="stylesheet">
+	<link href="css/hint.css" rel="stylesheet">
+	<link href="css/tooltip.css" rel="stylesheet">
+	<link href="css/form-base.css" rel="stylesheet">
+	<link href="css/form-custom.css" rel="stylesheet">
+	<link href="css/search-group.css" rel="stylesheet">
+	<link href="css/tab.css" rel="stylesheet">
+	<link href="css/input-filter.css" rel="stylesheet">
+
+	<link href="css/pages/send.css" rel="stylesheet">
+
+	<style>
+		/*
+		Этот пустой блок с тэгом <style> удалять нельзя.
+		Он используется для оперативных правок прямо на продуктивном/тестовом сервере.
+		*/
+	</style>
+
+	<!--[if lt IE 9]>
+		<script src="js/vendor/html5shiv.min.js?v=3.7.0">/*
+			https://github.com/aFarkas/html5shiv
+			The HTML5 Shiv enables use of HTML5 sectioning elements in legacy Internet Explorer and provides basic HTML5 styling for Internet Explorer 6-9, Safari 4.x (and iPhone 3.x), and Firefox 3.x.
+		*/</script>
+
+		<script data-src="js/vendor/respond.min.js?v=1.4.2">/*
+			https://github.com/scottjehl/Respond
+			A fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more)
+			WARNING: Respond.js doesn't work if you view the page via file://
+		*/</script>
+
+	<![endif]-->
+
+</head>
+<body>
+
+	<div class="container">
+
+		<header>
+			<nav>
+				<a href="index.html"><img src="img/leader_logo_2013.png" title="НКО Лидер"></a>
+
+				<ul class="dd-menu">
+					<li><a href="search_client.html">Денежные переводы</a>
+						<ul>
+							<li><a href="send.html"><i class="fa fa-sign-out fa-fw fa-lg"></i>Отправить<span class="hot-key">Alt + S</span></a></li>
+							<li><a href="receive.html"><i class="fa fa-sign-in fa-fw fa-lg"></i>Выдать<span class="hot-key">Alt + W</span></a></li>
+							<li><a href="#correct.html"><i class="fa fa-pencil fa-fw fa-lg"></i>Корректировать<span class="hot-key">Alt + E</span></a></li>
+							<li><a href="#return.html"><i class="fa fa-close fa-fw fa-lg"></i>Отменить/возвратить</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#calculate.html"><i class="fa fa-money fa-fw fa-lg"></i>Расчёт комиссии</a></li>
+							<li><a href="search_client.html"><i class="fa fa-user fa-fw fa-lg"></i>Поиск клиента</a></li>
+							<li><a href="#search_office.html"><i class="fa fa-university fa-fw fa-lg"></i>Поиск пункта/офиса</a></li>
+							<li><a href="check.html"><i class="fa fa-info-circle fa-fw fa-lg"></i>Статус перевода</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#uncompleted.html"><i class="fa fa-warning fa-fw fa-lg"></i>Незавершённые переводы (0)<span class="hot-key">Alt + I</span></a></li>
+							<li><a href="#completed.html"><i class="fa fa-check-square fa-fw fa-lg"></i>Завершённые переводы (5)<span class="hot-key">Alt + O</span></a></li>
+						</ul>
+					</li>
+					<li><a href="#">Оплата услуг</a>
+						<ul>
+							<li><a href="#">Отправить платёж</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#"><i class="fa fa-check-square fa-fw fa-lg"></i>Завершённые платежи (5)</a></li>
+							<li><a href="#"><i class="fa fa-warning fa-fw fa-lg"></i>Незавершённые платежи (0)</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Отчёты</a>
+						<ul>
+							<li><a href="#">Проведённые операции</a></li>
+							<li><a href="#">Финансовые результаты</a></li>
+							<li><a href="#">Расчёты по операциям</a></li>
+							<li><a href="#">Платежи в адрес юр. лиц</a></li>
+							<li><a href="#">Расчёты по платежам в адрес юр. лиц</a></li>
+							<li><a href="#">Сводный отчёт об операциях в разрезе операционистов</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Прочее</a>
+						<ul>
+							<li><a href="#">Помощь/справка</a></li>
+							<li><a href="#">Персонификация Leomoney.com</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Иванов Иван</a>
+						<ul>
+							<li class="info"><strong>Роль:</strong> оператор</li>
+							<li class="info"><strong>Офис:</strong> доп. офис Марьинский</li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#">Смена пароля</a></li>
+							<li><a href="#">Сертификаты</a></li>
+							<li><a href="#">Запросы на сертификаты</a></li>
+							<li><a href="#">Бонусная программа</a></li>
+							<li><a href="#">Написать отзыв</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#">Выход</a></li>
+						</ul>
+					</li>
+				</ul>
+
+				
+			</nav>
+		</header>
+
+		<h1>Отправка денежного перевода</h1>
+
+<datalist id="country">
+	<option value="Россия">
+	<option value="Китай">
+	<option value="ОАЭ">
+</datalist>
+
+<form class="search">
+<section class="block mt">
+<div class="block-caption">
+	<!--<button class="close"><i class="fa fa-close" title="Закрыть"></i></button>-->
+	<span class="block-step fa-stack fa-lg">
+		<i class="round fa fa-circle fa-stack-1x"></i>
+		<i class="digit fa fa-stack-1x">1</i>
+	</span>
+	Перевод
+</div>
+<div class="block-content">
+	<table class="group">
+	<tr>
+		<th colspan="2" class="caption-group">Основные сведения</th>
+	</tr>
+	<tr>
+		<td>Страна выдачи<span class="required">*</span></td>
+		<td><input type="text" class="country" list="country" value="Китай" autofocus required /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Способ доставки денежных средств. В зависимости от выбранной страны некоторые варианты выбора могут быть недоступны."></i>Способ выдачи<span class="required">*</span></td>
+		<td>
+			<div class="recive-where-group">
+				<input type="radio" name="recive-where" class="recive-where" value="cash" id="mt-recive-where-cash"><label class="radio" for="mt-recive-where-cash">наличными</label><!--
+				--><input type="radio" name="recive-where" class="recive-where" value="account" id="mt-recive-where-account"><label class="radio" for="mt-recive-where-account">банковский счёт</label>
+			</div>
+			<div class="bank-account-group">
+				<!--<div><input type="text" placeholder="№ счёта получателя в ICBC" /></div>-->
+				<div><input type="text" class="bank-account" placeholder="BankAccType" minlength="1" maxlength="20" /><i class="fa fa-question-circle icon-hint" title="Текст подсказки"></i></div>
+				<div><input type="text" class="bank-account" placeholder="AccountNo" minlength="1" maxlength="50" /><i class="fa fa-question-circle icon-hint" title="Текст подсказки"></i></div>
+				<div><input type="text" class="bank-account" placeholder="BankCity" minlength="1" maxlength="50" /><i class="fa fa-question-circle icon-hint" title="Текст подсказки"></i></div>
+				<div><input type="text" class="bank-account" placeholder="BeneIDNo" minlength="11" maxlength="11" /><i class="fa fa-question-circle icon-hint" title="Текст подсказки"></i></div>
+			</div>
+		</td>
+	</tr>
+	<tr class="partner-system-group">
+		<td>
+			<i class="fa fa-question-circle icon-hint" title="Поле показывается только для ДП, проходящих через партнёрские системы (дальнее зарубежье)"></i>Партнёрская система<span class="required">*</span>
+		</td>
+		<td>
+			<div class="radio-item-group">
+				<input type="radio" class="partner-system" name="partner-system" id="mt-partner-system1" value="RIA,any">
+				<label class="radio" for="mt-partner-system1">RIA (1,5%) 21439 пунктов, безадр. переводы</label>
+			</div>
+			<div class="radio-item-group">
+				<input type="radio" class="partner-system" name="partner-system" id="mt-partner-system2" value="IME,point">
+				<label class="radio" for="mt-partner-system2">IME (1%) 7350 пунктов, адресные переводы</label>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>Валюта отправки<span class="required">*</span></td>
+		<td>
+			<input type="radio" class="send-currency" name="send-currency" id="mt-send-currency1" value="rub"><label class="radio rub" for="mt-send-currency1">RUB</label><!--
+			--><input type="radio" class="send-currency" name="send-currency" id="mt-send-currency2" value="usd"><label class="radio usd" for="mt-send-currency2">USD</label><!--
+			--><input type="radio" class="send-currency" name="send-currency" id="mt-send-currency3" value="eur"><label class="radio eur" for="mt-send-currency3">EUR</label><!--
+			--><!--<input type="radio" name="send-currency" id="mt-send-currency4" id="mt-send-currency4" value="aed"><label class="radio aed" for="mt-send-currency4">AED</label>-->
+		</td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Набор валют выдачи зависит от страны отправки и партнёрской системы"></i>Валюта выдачи<span class="required">*</span></td>
+		<td>
+			<input type="radio" class="recive-currency" name="recive-currency" id="mt-recive-currency1" value="usd"><label class="radio usd" for="mt-recive-currency1">USD</label><!--
+			--><input type="radio" class="recive-currency" name="recive-currency" id="mt-recive-currency2" value="eur"><label class="radio eur" for="mt-recive-currency2">EUR</span></label>
+		</td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Сумма платежа = сумма отправки + сумма комиссии"></i>Считать по сумме<span class="required">*</span></td>
+		<td>
+			<input type="radio" class="calc-method" name="calc-method" id="mt-calc-method1" value="pay" disabled><label class="radio" for="mt-calc-method1">платежа</label><!--
+			--><input type="radio" class="calc-method" name="calc-method" id="mt-calc-method2" value="send" disabled><label class="radio" for="mt-calc-method2">отправки</label><!--
+			--><input type="radio" class="calc-method" name="calc-method" id="mt-calc-method3" value="recive" disabled><label class="radio" for="mt-calc-method3">выдачи</label>
+		</td>
+	</tr>
+	<tr>
+		<td>Сумма <span class="method-caption">…</span><span class="required">*</span></td>
+		<td>
+			<input id="mt-dynamic-sum" type="number" class="money" min="1" max="1000000" step="1" value="" disabled />
+			<span id="mt-dynamic-currency" class="currency"></span>
+			<span class="dynamic-discount-group"><input type="checkbox" id="mt-dynamic-discount1" class="dynamic-discount"><label class="checkbox" for="mt-dynamic-discount1"><i class="fa fa-check fa-fw"></i>использовать скидку</label><!--
+			--><i class="fa fa-question-circle icon-hint" title="Использовать скидку по карте клиента"></i></span>
+		</td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Не во все пункты можно отправлять все валюты и во многих пунктах есть ограничение по сумме"></i>Адрес пункта выдачи<span class="required">*</span></td>
+		<td>
+			<div class="address-know-group">
+				<input type="radio" class="address-know" name="address-know" value="1" id="mt-address-know1"><label class="radio" for="mt-address-know1">клиенту известен</label><!--
+				--><input type="radio" class="address-know" name="address-know" value="0" id="mt-address-know2"><label class="radio" for="mt-address-know2">подобрать вариант</label>
+			</div>
+			<div class="point-location-group">
+				<div><input type="text" class="point-location city" placeholder="Населённый пункт"/></div>
+				<div><input type="text" class="point-location address" style="margin-top:10px" placeholder="Адрес"/></div>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Поле нужно показывать только для ОАЭ"></i>Source of Funds<span class="required">*</span></td>
+		<td>
+			<div>
+				<input type="radio" class="funds-source" name="funds-source" value="salary" checked id="mt-funds-source1"><label class="radio" for="mt-funds-source1">Salary</label><!--
+				--><input type="radio" class="funds-source" name="funds-source" value="bank_loan" id="mt-funds-source2"><label class="radio" for="mt-funds-source2">Bank Loan</label><!--
+				--><input type="radio" class="funds-source" name="funds-source" value="other" id="mt-funds-source3"><label class="radio" for="mt-funds-source3">Other Income</label>
+			</div>
+			<textarea class="extra" placeholder="Other income" style="margin-top: 15px;"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Поле нужно показывать только для ОАЭ"></i>Purpose of Transfer<span class="required">*</span></td>
+		<td>
+			<select name="purpose">
+				<option value="" selected>Family maintenance</option>
+				<option>Medical Expenses</option>
+				<option>Educational Expenses</option>
+			</select>
+			<!--
+			<div class="radio-item-group"><input type="radio" class="purpose" name="purpose" value="salary" checked id="mt-purpose1"><label class="radio" for="mt-purpose1">Family maintenance</label></div>
+			<div class="radio-item-group"><input type="radio" class="purpose" name="purpose" value="bank_loan" id="mt-purpose2"><label class="radio" for="mt-purpose2">Medical Expenses</label></div>
+			<div class="radio-item-group"><input type="radio" class="purpose" name="purpose" value="other" id="mt-purpose3"><label class="radio" for="mt-purpose3">Educational Expenses</label></div>
+			-->
+		</td>
+	</tr>
+	</table>
+
+	<table class="group calc-result-group">
+	<tr>
+		<th colspan="3" class="caption-group">Калькуляция<i class="fa fa-question-circle icon-hint" title="Блок показываем только после ввода суммы!"></i></th>
+	</tr>
+	<tr>
+		<td>Сумма отправки</td>
+		<td>
+			<span class="sum-aligned">980,10</span>
+			<span class="send-currency currency">…</span>
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Сумма выдачи</td>
+		<td>
+			<span class="sum-aligned">27,00</span>
+			<span class="recive-currency currency">…</span>
+		</td>
+		<td>
+			<div id="currency-rate" style="position: absolute; margin-top: -26px;">
+				1 <span class="recive-currency">…</span> =
+				36,30 <span class="send-currency">…</span><i class="fa fa-question-circle icon-hint" title="Курс конвертации"></i>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>Комиссия</td>
+		<td>
+			<span class="sum-aligned">72,60</span>
+			<span class="currency"><span class="send-currency">…</span> <span class="fee">(1,5%)</span></span>
+		</td>
+		<td>Комиссия участника 21,78 <span class="send-currency">…</span></td>
+	</tr>
+	<tr class="discount-group">
+		<td>Скидка</td>
+		<td>
+			<span class="sum-aligned">35,00</span>
+			<span class="currency"><span class="send-currency">…</span> <span class="discount">(0,8%)</span></span>
+		</td>
+		<td>Эквивалент 35 баллов</td>
+	</tr>
+	<tr>
+		<td><b>Итого к оплате</b></td>
+		<td>
+			<span class="sum-aligned">1017,70</span>
+			<span class="send-currency currency">…</span>
+		</td>
+		<td>Бонус оператору 38 баллов<i class="fa fa-question-circle icon-hint" title="Кол-во баллов, которое начислится оператору за совершённую операцию по программе лояльности"></i></td>
+	</tr>
+	</table>
+
+	<table class="group restrictions-group">
+	<tr>
+		<th colspan="2" class="caption-group">
+			Ограничения<i class="fa fa-question-circle icon-hint" title="Блок показываем только в случае имеющихся ограничений!"></i>
+		</th>
+	</tr>
+	<tr>
+	<td colspan="2">
+		<div class="restrictions-message">
+			Получение (Китай):<br />
+			Общая сумма получения переводов для одного физического лица не должна превышать 50 000 долларов США в год. Перевод в юанях может получить только гражданин Китая.
+		</div>
+	</td>
+	</tr>
+	</table>
+</div>
+</section>
+
+<section class="block sender">
+<div class="block-caption">
+	<!--<button class="close"><i class="fa fa-close" title="Закрыть"></i></button>-->
+	<span class="block-step fa-stack fa-lg">
+		<i class="round fa fa-circle fa-stack-1x"></i>
+		<i class="digit fa-stack-1x">2</i>
+	</span>
+	Отправитель
+</div>
+<div class="block-content">
+	<table class="group">
+	<tr>
+		<th colspan="2" class="caption-group">
+			<a href="#" class="extra-fields-toggle-group">показать/скрыть доп. поля</a>
+			Основные данные
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<i class="fa fa-question-circle icon-hint" title="Используется для SMS уведомлений о переводе"></i>Моб. телефон<span class="required">*</span>
+		</td>
+		<td>
+			<div class="tel-plus">+</div><input type="tel" class="tel" value="7 965 123-45-67" placeholder="страна сеть номер" /><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a>
+			</div>
+		</td>
+	</tr>
+	<tr class="extra-fields-group">
+		<td>Карта клиента</td>
+		<td>
+			<div class="client-card-group">
+				<input type="text" class="client-card" value="001-004-7415" maxlength="12" placeholder="###-###-####" /><!--
+				--><div class="search-group">
+					<button class="search opacity">Найти</button><!--
+					--><button class="cancel">Отменить</button><!--
+					--><span class="result-not-found">не найдено</span><!--
+					--><a href="#" class="result-found" title="Показать результаты поиска"></a>
+				</div>
+			</div>
+			<div class="client-card-info-group">
+				<i class="fa fa-question-circle icon-hint" title="Для использования скидки в блоке «Перевод» отметьте флаг «Использовать скидку»"></i>
+				<div class="client-card-info">накоплено<br>15257 баллов</div>
+			</div>
+		</td>
+	</tr>
+	<tr class="extra-fields-group">
+		<td><i class="fa fa-question-circle icon-hint" title="Используется для почтовых уведомлений о переводе"></i>E-mail</td>
+		<td><input type="email" value="grigoriev-appolonov@mail.ru" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Фамилия вводится по-английски или по-русски"></i>Фамилия<span class="required">*</span></td>
+		<td><input type="text" class="person-name" value="Григорьев-Апполонов" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Имя вводится по-английски или по-русски"></i>Имя<span class="required">*</span></td>
+		<td><input type="text" class="person-name" value="Андрей" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Отчество вводится по-английски или по-русски"></i>Отчество</td>
+		<td><input type="text" class="person-name" value="Генрихович" /></td>
+	</tr>
+	</table>
+
+	<table class="group main-doc-group">
+	<tr>
+	  <th colspan="2" class="caption-group">
+		<div style="float:right; margin-left:10px; margin-right: -5px; font-weight:normal;">
+			<input type="checkbox" class="identify-full" id="sender-identify-full1"><label class="checkbox" for="sender-identify-full1"><i class="fa fa-check fa-fw"></i>полная идентиф-ция</label><!--
+			--><i class="fa fa-question-circle icon-hint" title="Для перевода на сумму меньше порогового значения (для каждой для страны отправки устанавливается индивидуально) возможна упрощённая идентификация. Используйте полную идентификацию в случае подозрения клиента на террориста! Для суммы больше порогового значения флаг всегда отмечен и изменить его нельзя"></i>
+		</div>
+		Документ, удостоверяющий личность
+	  </th>
+	</tr>
+	<tr>
+	<td>Тип документа<span class="required">*</span></td>
+	<td>
+	  <select class="doc-type">
+	  <option></option>
+	  <optgroup label="Для граждан РФ">
+		<option>Паспорт гражданина РФ</option>
+		<option>Заграничный паспорт гражданина РФ</option>
+		<option>Удостоверение личности моряка ("Паспорт моряка" до 01.01.2014)</option>
+		<option>Удостоверение личности военнослужащего ("Удостоверение личности офицера" до 01.01.2005)</option>
+		<option>Военный билет Вооружённых Сил РФ</option>
+		<option>Временное удостоверение личности гражданина РФ</option>
+		<option>Иной документ, признаваемый законодательством РФ, удостоверяющий личность</option>
+	  </optgroup>
+	  <optgroup label="Для иностранных граждан">
+		<option>Паспорт иностранного гражданина</option>
+		<option>Иной документ, признаваемый в соответствии с международным договором РФ в качестве документа, удостоверяющего личность</option> </optgroup>
+	  <optgroup label="Для апатридов (лиц без гражданства)">
+		<option>Разрешение на временное проживание</option>
+		<option>Вид на жительство</option>
+		<option>Иной документ, признаваемый в соответствии с международным договором РФ в качестве документа, удостоверяющего личность</option>
+	  </optgroup>
+	  <optgroup label="Для беженцев">
+		<option>Свидетельство о рассмотрении ходатайства о признании лица беженцем</option>
+		<option>Удостоверение беженца</option>
+	  </optgroup>
+	</select>
+	</td>
+	</tr>
+	<tr>
+		<td>Страна, выдавшая документ<span class="required">*</span></td>
+		<td><input type="text" class="country" value="Россия" list="country" /></td>
+	</tr>
+	<tr>
+		<td>Резидент страны отправления?<span class="required">*</span></td>
+		<td>
+			<input type="radio" name="resident" class="resident" id="sender-resident1" value="1"><label class="radio" for="sender-resident1">резидент</label><!--
+			--><input type="radio" name="resident" class="resident" id="sender-resident0" value="0"><label class="radio" for="sender-resident0">нерезидент</label>
+		</td>
+	</tr>
+	<tr>
+		<td>Дата рождения<span class="required">*</span></td>
+		<td>
+			<input type="date" class="date"><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a><!--
+				--><i class="fa fa-question-circle icon-hint" title="Найти клиента по ФИО и дате рождения!"></i>
+			</div>
+		</td>
+	</tr>
+	<tr class="identify-full-group">
+		<td>Место рождения<span class="required">*</span></td>
+		<!--<td><input type="text" class="birth-place" value="с Уразовка Краснооктябрьского р-на Нижегородской обл" /></td>-->
+		<td><textarea class="birth-place">с Уразовка Краснооктябрьского р-на Нижегородской обл</textarea>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="В зависимости от документа, поле серия может не заполняться"></i>Серия и номер<span class="required">*</span></td>
+		<td>
+			<input type="text" class="doc-serial" value="1234" /><!--
+			--><input type="text" class="doc-number" value="123456" /><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a>
+			</div>
+		</td>
+	</tr>
+	<tr class="identify-full-group">
+		<td>Кем выдан<span class="required">*</span></td>
+		<!--<td><input type="text" class="doc-issue" value="ОВД Краснооктябрьского р-на Нижегородской обл" /></td>-->
+		<td><textarea class="doc-issue">ОВД Краснооктябрьского р-на Нижегородской обл</textarea></td>
+	</tr>
+	<tr class="identify-full-group">
+		<td><i class="fa fa-question-circle icon-hint" title="Поле отображается только для типа документа Паспорт РФ!"></i>Код подразделения</td>
+		<td><input type="text" class="doc-issue-code" value="522-040" placeholder="###-###" /></td>
+	</tr>
+	<tr class="identify-full-group">
+		<td>Действительность документа<span class="required">*</span></td>
+		<td>
+			<div class="date-group">дата выдачи<br /><input type="date" class="date" /></div><!--
+			--><div class="date-group">дата истечения<br /><input type="date" class="date" /></div>
+		</td>
+	</tr>
+	<tr class="identify-full-group">
+		<td>Дополнительные сведения</td>
+		<td><textarea class="extra"></textarea></td>
+	</tr>
+	</table>
+
+	<table class="group identify-full-group">
+	<tr>
+		<th colspan="2" class="caption-group">Место жительства / регистрация</th>
+	</tr>
+	<tr>
+		<td>Страна<span class="required">*</span></td>
+		<td><input type="text" class="country" list="country" value="Белоруссия" /></td>
+	</tr>
+	<tr>
+		<td>Населённый пункт<span class="required">*</span></td>
+		<td><input type="text" class="city" value="Минск" /></td>
+	</tr>
+	<tr>
+		<td>Адрес<span class="required">*</span></td>
+		<td><input type="text" class="address" value="Ул. Юных Ленинцев д.19, кор.2, кв.33" /></td>
+	</tr>
+	</table>
+
+	<table class="group extra-doc-group">
+	<tr>
+		<th colspan="2" class="caption-group">
+			Дополнительный документ
+			<i class="fa fa-question-circle icon-hint" title="Заполняется для нерезидентов или для несовершеннолетних от 14 до 18 лет"></i>
+		</th>
+	</tr>
+	<tr>
+	<td>Тип документа<span class="required">*</span></td>
+	<td>
+	  <select class="doc-type">
+		<option></option>
+		<option>Миграционная карта = Migration card</option>
+		<option>Вид на жительство = Permanent residency</option>
+		<option>Разрешение на временное проживание = Temporary residence permit</option>
+		<option>Виза = Visa</option>
+		<option>Иной документ = Other document</option>
+	  </select>
+	</td>
+	</tr>
+	<tr>
+		<td>Страна, выдавшая документ<span class="required">*</span></td>
+		<td><input type="text" class="country" list="country" value="Россия" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="В зависимости от документа, поле серия может не заполняться"></i>Серия и номер<span class="required">*</span></td>
+		<td>
+			<input type="text" class="doc-serial" value="1234" /><!--
+			--><input type="text" class="doc-number" value="123456" /><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>Кем выдан</td>
+		<!--<td><input type="text" class="doc-issue" value="ОВД Краснооктябрьского р-на Нижегородской обл" /></td>-->
+		<td><textarea class="doc-issue">ОВД Краснооктябрьского р-на Нижегородской обл</textarea></td>
+	</tr>
+	<tr>
+		<td>Действительность документа<span class="required">*</span></td>
+		<td>
+			<div class="date-group">дата выдачи<br /><input type="date" class="date" /></div><!--
+			--><div class="date-group">дата истечения<br /><input type="date" class="date" /></div>
+		</td>
+	</tr>
+	<tr>
+		<td>Дополнительные сведения</td>
+		<td><textarea class="extra"></textarea></td>
+	</tr>
+	</table>
+</div>
+</section>
+
+<section class="block recipient">
+<div class="block-caption">
+	<!--<button class="close"><i class="fa fa-close" title="Закрыть"></i></button>-->
+	<span class="block-step fa-stack fa-lg">
+		<i class="round fa fa-circle fa-stack-1x"></i>
+		<i class="digit fa-stack-1x">3</i>
+	</span>
+	<a href="#" class="copy-from-sender">скопировать из отправителя</a>
+	Получатель
+</div>
+<div class="block-content">
+	<table class="group">
+	<tr>
+		<th colspan="2" class="caption-group">
+			<a href="#" class="extra-fields-toggle-group">показать/скрыть доп. поля</a>
+			Основные данные
+		</th>
+	</tr>
+	<tr class="extra-fields-group">
+		<td><i class="fa fa-question-circle icon-hint" title="?"></i>Моб. телефон</td>
+		<td>
+			<div class="tel-plus">+</div><input type="tel" class="tel" value="7 965 123-45-67" placeholder="страна сеть номер" /><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a>
+			</div>
+		</td>
+	</tr>
+	<tr class="extra-fields-group">
+		<td><i class="fa fa-question-circle icon-hint" title="Используется для почтовых уведомлений о переводе"></i>E-mail</td>
+		<td><input type="email" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Фамилия вводится по-английски или по-русски"></i>Фамилия<span class="required">*</span></td>
+		<td><input type="text" class="person-name" value="Григорьев-Апполонов" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Имя вводится по-английски или по-русски"></i>Имя<span class="required">*</span></td>
+		<td><input type="text" class="person-name" value="Андрей" /></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Отчество вводится по-английски или по-русски"></i>Отчество</td>
+		<td><input type="text" class="person-name" value="Генрихович" /></td>
+	</tr>
+	</table>
+
+	<table class="group main-doc-group">
+	<tr>
+	  <th colspan="2" class="caption-group">Документ, удостоверяющий личность</th>
+	</tr>
+	<tr>
+	<td>Тип документа<span class="required">*</span></td>
+	<td>
+	  <select class="doc-type">
+	  <option></option>
+	  <optgroup label="Для граждан РФ">
+		<option>Паспорт гражданина РФ</option>
+		<option>Заграничный паспорт гражданина РФ</option>
+		<option>Удостоверение личности моряка ("Паспорт моряка" до 01.01.2014)</option>
+		<option>Удостоверение личности военнослужащего ("Удостоверение личности офицера" до 01.01.2005)</option>
+		<option>Военный билет Вооружённых Сил РФ</option>
+		<option>Временное удостоверение личности гражданина РФ</option>
+		<option>Иной документ, признаваемый законодательством РФ, удостоверяющий личность</option>
+	  </optgroup>
+	  <optgroup label="Для иностранных граждан">
+		<option>Паспорт иностранного гражданина</option>
+		<option>Иной документ, признаваемый в соответствии с международным договором РФ в качестве документа, удостоверяющего личность</option> </optgroup>
+	  <optgroup label="Для апатридов (лиц без гражданства)">
+		<option>Разрешение на временное проживание</option>
+		<option>Вид на жительство</option>
+		<option>Иной документ, признаваемый в соответствии с международным договором РФ в качестве документа, удостоверяющего личность</option>
+	  </optgroup>
+	  <optgroup label="Для беженцев">
+		<option>Свидетельство о рассмотрении ходатайства о признании лица беженцем</option>
+		<option>Удостоверение беженца</option>
+	  </optgroup>
+	</select>
+	</td>
+	</tr>
+	<tr>
+		<td>Страна, выдавшая документ<span class="required">*</span></td>
+		<td><input type="text" class="country" list="country" value="Объединённые Арабские Эмираты (ОАЭ)" /></td>
+	</tr>
+	<tr>
+		<td>Резидент страны получения?<span class="required">*</span></td>
+		<td>
+			<input type="radio" name="resident" class="resident" id="recipient-resident1" value="1"><label class="radio" for="recipient-resident1">резидент</label><!--
+			--><input type="radio" name="resident" class="resident" id="recipient-resident0" value="0"><label class="radio" for="recipient-resident0">нерезидент</label>
+		</td>
+	</tr>
+	<tr>
+		<td>Дата рождения<span class="required">*</span></td>
+		<td>
+			<input type="date" class="date"><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a><!--
+				--><i class="fa fa-question-circle icon-hint" title="Найти клиента по ФИО и дате рождения"></i>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>Место рождения<span class="required">*</span></td>
+		<!--<td><input type="text" class="birth-place" value="с Уразовка Краснооктябрьского р-на Нижегородской обл" /></td>-->
+		<td><textarea class="birth-place">с Уразовка Краснооктябрьского р-на Нижегородской обл</textarea>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="В зависимости от документа, поле серия может не заполняться"></i>Серия и номер<span class="required">*</span></td>
+		<td>
+			<input type="text" class="doc-serial" value="1234" /><!--
+			--><input type="text" class="doc-number" value="123456" /><!--
+			--><div class="search-group">
+				<button class="search opacity">Найти</button><!--
+				--><button class="cancel">Отменить</button><!--
+				--><span class="result-not-found">не найдено</span><!--
+				--><a href="#" class="result-found" title="Показать результаты поиска"></a>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>Кем выдан<span class="required">*</span></td>
+		<!--<td><input type="text" class="doc-issue" value="ОВД Краснооктябрьского р-на Нижегородской обл" /></td>-->
+		<td><textarea class="doc-issue">ОВД Краснооктябрьского р-на Нижегородской обл</textarea></td>
+	</tr>
+	<tr>
+		<td><i class="fa fa-question-circle icon-hint" title="Поле отображается только для типа документа Паспорт РФ!"></i>Код подразделения</td>
+		<td><input type="text" class="doc-issue-code" value="522-040" placeholder="###-###" /></td>
+	</tr>
+	<tr>
+		<td>Действительность документа<span class="required">*</span></td>
+		<td>
+			<div class="date-group">дата выдачи<br /><input type="date" class="date" /></div><!--
+			--><div class="date-group">дата истечения<br /><input type="date" class="date" /></div>
+		</td>
+	</tr>
+	<tr>
+		<td>Дополнительные сведения</td>
+		<td><textarea class="extra"></textarea></td>
+	</tr>
+	</table>
+
+	<table class="group location-group">
+	<tr>
+		<th colspan="2" class="caption-group">Место жительства / регистрация</th>
+	</tr>
+	<tr>
+		<td>Страна<span class="required">*</span></td>
+		<td><input type="text" class="country" list="country" value="Белоруссия" /></td>
+	</tr>
+	<tr>
+		<td>Населённый пункт<span class="required">*</span></td>
+		<td><input type="text" class="city" value="Минск" /></td>
+	</tr>
+	<tr>
+		<td>Адрес<span class="required">*</span></td>
+		<td><input type="text" class="address" value="Ул. Юных Ленинцев д.19, кор.2, кв.33" /></td>
+	</tr>
+	</table>
+</div>
+</section>
+
+<div class="button-group">
+	<button type="reset" value="cancel" class="large">Отменить</button><!--
+	--><button type="submit" value="register" class="large" disabled>Зарегистрировать перевод</button>
+</div>
+</form>
+
+	</div>
+
+	<footer>
+		<div class="debug"></div>
+	</footer>
+
+	<!--[if lt IE 9]>
+		<script data-src="js/vendor/es5-shim.min.js?v=4.0.3">/* http://github.com/es-shims/es5-shim/ Пока не потребовалось, на будущее */</script>
+		<script src="js/vendor/jquery-1.11.1.min.js">/* https://code.jquery.com/ */</script>
+		<script src="js/vendor/jquery.placeholder.min.js?v=0.2.4">/*
+			https://github.com/matoilic/jquery.placeholder
+			https://github.com/mathiasbynens/jquery-placeholder -- вот второй плагин, если первый будет глючить
+		*/</script>
+	<![endif]-->
+
+	<![if gte IE 9]>
+		<script src="js/vendor/jquery-2.1.1.min.js">/* https://code.jquery.com/ */</script>
+	<![endif]>
+
+	<script src="js/vendor/jquery.pseudo_selectors2classes.js?v=2.5"></script>
+	<script src="js/vendor/jquery.input_filters.js?v=2.3"></script>
+	<script src="js/vendor/jquery.tooltip.js?v=3.2.0"></script>
+	<script src="js/vendor/jquery.validate.min.js">/* http://jqueryvalidation.org/ */</script>
+	<script src="js/vendor/jquery.validate.messages_ru.min.js">/* подгружаем локализацию только если язык интерфейса -- русский! */</script>
+	<script src="js/vendor/jquery.hotkeys.js?v=0.8">/* https://github.com/jeresig/jquery.hotkeys */</script>
+	<script src="js/vendor/jquery.textarea_autoresize.min.js?v=1.4">/*
+		http://jquerylist.ru/forms/jquery-plugin-autoresize.html,
+		https://github.com/brandonaaron/jquery-expandable
+	*/</script>
+	<script src="js/vendor/knockout.min.js?v=3.2.0">/* http://knockoutjs.com/ */</script>
+	<script src="js/input-filter.js"></script>
+	<script src="js/general.js"></script>
+
+	<script src="js/pages/send.js"></script>
+
+	<script>
+		/*
+		Этот пустой блок с тэгом <script> удалять нельзя.
+		Он используется для оперативных правок прямо на продуктивном/тестовом сервере.
+		*/
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7 ie6"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8 ie7"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9 ie8"><![endif]-->
+<!--[if gt IE 8]><!--><html class="gt-ie8" lang="en"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"><![endif]-->
+	<!--[if gt IE 8]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"><!-- См. https://msdn.microsoft.com/ru-ru/library/ie/hh801214(v=vs.85).aspx -->
+	<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true"><!-- См. https://msdn.microsoft.com/ru-ru/library/ie/hh920753(v=vs.85).aspx -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex"/>
+	<title>Поиск клиента для отправки и выдачи ДП</title>
+
+	<link href="css/font-awesome.css?v=4.2.0" rel="stylesheet"><!-- http://fontawesome.io/ -->
+	<!--[if lt IE 8]>
+		<link href="css/font-awesome-ie7.css?v=4.2.0" rel="stylesheet">
+	<![endif]-->
+
+	<link href="css/general.css" rel="stylesheet">
+	<link href="css/grid.css" rel="stylesheet">
+	<link href="css/menu.css" rel="stylesheet">
+	<link href="css/placeholder.css" rel="stylesheet">
+	<link href="css/block.css" rel="stylesheet">
+	<link href="css/hint.css" rel="stylesheet">
+	<link href="css/tooltip.css" rel="stylesheet">
+	<link href="css/form-base.css" rel="stylesheet">
+	<link href="css/form-custom.css" rel="stylesheet">
+	<link href="css/search-group.css" rel="stylesheet">
+	<link href="css/tab.css" rel="stylesheet">
+	<link href="css/input-filter.css" rel="stylesheet">
+	
+	<link href="css/pages/search_client.css" rel="stylesheet">
+
+
+	<style>
+		/*
+		Этот пустой блок с тэгом <style> удалять нельзя.
+		Он используется для оперативных правок прямо на продуктивном/тестовом сервере.
+		*/
+	</style>
+
+	<!--[if lt IE 9]>
+		<script src="js/vendor/html5shiv.min.js?v=3.7.0">/*
+			https://github.com/aFarkas/html5shiv
+			The HTML5 Shiv enables use of HTML5 sectioning elements in legacy Internet Explorer and provides basic HTML5 styling for Internet Explorer 6-9, Safari 4.x (and iPhone 3.x), and Firefox 3.x.
+		*/</script>
+
+		<script data-src="js/vendor/respond.min.js?v=1.4.2">/*
+			https://github.com/scottjehl/Respond
+			A fast & lightweight polyfill for min/max-width CSS3 Media Queries (for IE 6-8, and more)
+			WARNING: Respond.js doesn't work if you view the page via file://
+		*/</script>
+
+	<![endif]-->
+
+
+</head>
+<body>
+
+	<div class="container">
+
+		<header>
+			<nav>
+				<a href="index.html"><img src="img/leader_logo_2013.png" title="НКО Лидер"></a>
+
+				<ul class="dd-menu">
+					<li><a href="search_client.html">Денежные переводы</a>
+						<ul>
+							<li><a href="send.html"><i class="fa fa-sign-out fa-fw fa-lg"></i>Отправить<span class="hot-key">Alt + S</span></a></li>
+							<li><a href="receive.html"><i class="fa fa-sign-in fa-fw fa-lg"></i>Выдать<span class="hot-key">Alt + W</span></a></li>
+							<li><a href="#correct.html"><i class="fa fa-pencil fa-fw fa-lg"></i>Корректировать<span class="hot-key">Alt + E</span></a></li>
+							<li><a href="#return.html"><i class="fa fa-close fa-fw fa-lg"></i>Отменить/возвратить</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#calculate.html"><i class="fa fa-money fa-fw fa-lg"></i>Расчёт комиссии</a></li>
+							<li><a href="search_client.html"><i class="fa fa-user fa-fw fa-lg"></i>Поиск клиента</a></li>
+							<li><a href="#search_office.html"><i class="fa fa-university fa-fw fa-lg"></i>Поиск пункта/офиса</a></li>
+							<li><a href="check.html"><i class="fa fa-info-circle fa-fw fa-lg"></i>Статус перевода</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#uncompleted.html"><i class="fa fa-warning fa-fw fa-lg"></i>Незавершённые переводы (0)<span class="hot-key">Alt + I</span></a></li>
+							<li><a href="#completed.html"><i class="fa fa-check-square fa-fw fa-lg"></i>Завершённые переводы (5)<span class="hot-key">Alt + O</span></a></li>
+						</ul>
+					</li>
+					<li><a href="#">Оплата услуг</a>
+						<ul>
+							<li><a href="#">Отправить платёж</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#"><i class="fa fa-check-square fa-fw fa-lg"></i>Завершённые платежи (5)</a></li>
+							<li><a href="#"><i class="fa fa-warning fa-fw fa-lg"></i>Незавершённые платежи (0)</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Отчёты</a>
+						<ul>
+							<li><a href="#">Проведённые операции</a></li>
+							<li><a href="#">Финансовые результаты</a></li>
+							<li><a href="#">Расчёты по операциям</a></li>
+							<li><a href="#">Платежи в адрес юр. лиц</a></li>
+							<li><a href="#">Расчёты по платежам в адрес юр. лиц</a></li>
+							<li><a href="#">Сводный отчёт об операциях в разрезе операционистов</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Прочее</a>
+						<ul>
+							<li><a href="#">Помощь/справка</a></li>
+							<li><a href="#">Персонификация Leomoney.com</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Иванов Иван</a>
+						<ul>
+							<li class="info"><strong>Роль:</strong> оператор</li>
+							<li class="info"><strong>Офис:</strong> доп. офис Марьинский</li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#">Смена пароля</a></li>
+							<li><a href="#">Сертификаты</a></li>
+							<li><a href="#">Запросы на сертификаты</a></li>
+							<li><a href="#">Бонусная программа</a></li>
+							<li><a href="#">Написать отзыв</a></li>
+							<li><div class="splitter"></div></li>
+							<li><a href="#">Выход</a></li>
+						</ul>
+					</li>
+				</ul>
+
+			</nav>
+		</header>
+
+<h1>Поиск клиента для отправки и выдачи ДП</h1>
+
+<form class="search">
+<div class="block" style="*width: 1040px">
+	<div class="block-content">
+		<table class="group-inline">
+			<tr>
+				<td><i class="fa fa-question-circle icon-hint" title="Номер документа, удостоверяющего личность. Можно вводить с серией или без неё."></i>Номер ДУЛ</td>
+				<td><input type="text" class="doc-number" value="" autofocus /></td>
+				<td>
+					<button class="search" disabled>Найти</button>
+					<button class="cancel">Отменить</button>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-question-circle icon-hint" title="Номер мобильного телефона вводится в международном формате"></i>Моб. телефон</td>
+				<td>
+					<div class="tel-plus">+</div><input type="tel" class="tel" value="" placeholder="страна сеть номер" />
+				</td>
+				<td>
+					<button class="search" disabled>Найти</button>
+					<button class="cancel">Отменить</button>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-question-circle icon-hint" title="Карта клиента, выданная в НКО Лидер"></i>Карта клиента</td>
+				<td><input type="text" class="client-card" value="" maxlength="12" placeholder="###-###-####" /></td>
+				<td>
+					<button class="search" disabled>Найти</button>
+					<button class="cancel">Отменить</button>
+				</td>
+			</tr>
+		</table>
+
+		<table class="group-inline">
+			<tr>
+				<td>ФИО<br>и дата рождения</td>
+				<td>
+					<div style="margin-bottom: 10px;"><input type="text" class="person-name" value="" placeholder="Фамилия" /><i class="fa fa-question-circle icon-hint" title="Фамилия вводится полностью по-английски или по-русски"></i></div>
+					<div style="margin-bottom: 10px;"><input type="text" class="person-name" value="" placeholder="Имя" /><i class="fa fa-question-circle icon-hint" title="Имя вводится полностью по-английски или по-русски"></i></div>
+					<div style="margin-bottom: 13px;"><input type="text" class="person-name" value="" placeholder="Отчество" /><i class="fa fa-question-circle icon-hint" title="Отчество (если есть) вводится полностью по-английски или по-русски"></i></div>
+					<div><input type="date" placeholder="Дата рождения"><i class="fa fa-question-circle icon-hint" title="Дата рождения"></i></div>
+				</td>
+				<td>
+					<button class="search" style="margin-left: -17px" disabled>Найти</button>
+					<button class="cancel">Отменить</button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</div>
+</form>
+
+<h2>Результат поиска по номеру документа «1234 123456»</h2>
+<h3>Найдены отправители</h3>
+
+<div class="table-wrap">
+
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для <br />отправителя</span>
+				</th>
+				<th class="confluenceTh">ФИО <br />отправителя
+				</th>
+				<th colspan="1" class="confluenceTh">Серия и номер <br />документа отправителя
+				</th>
+				<th colspan="1" class="confluenceTh">→
+				</th>
+				<th class="confluenceTh">ФИО <br />получателя
+				</th>
+				<th class="confluenceTh">Страна <br />получения
+				</th>
+				<th class="confluenceTh">Валюта <br />получения
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», Китай, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>1234 123456</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">Китай
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>1234 123456</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петрова Марья Андреевна», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>1234 123456</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петрова Марья Андреевна
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Иванов Иван Иванович», Россия, RUB">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>1234 123456</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd">Россия
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(255,0,0);">RUB </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h3>Найдены получатели</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">получателя</span>
+				</th>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">ФИО </span><br /><span style="color: rgb(0,0,0);">получателя</span>
+				</th>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Серия и номер </span><br /><span style="color: rgb(0,0,0);">документа получателя</span>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a>
+				</td>
+				<td colspan="1" class="confluenceTd"><span>Иванов Иван Иванович</span>
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>1234 123456</mark>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2><span style="color: rgb(0,0,0);">Результат поиска по номеру телефона «+7 965 123-45-67»</span></h2>
+<h3>Найдены отправители</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">отправителя</span>
+				</th>
+				<th class="confluenceTh">ФИО <br />отправителя
+				</th>
+				<th colspan="1" class="confluenceTh">Телефон отправителя
+				</th>
+				<th colspan="1" class="confluenceTh">→
+				</th>
+				<th class="confluenceTh">ФИО <br />получателя
+				</th>
+				<th class="confluenceTh">Страна <br />получения
+				</th>
+				<th class="confluenceTh">Валюта <br />получения
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», Китай, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>+7 965 123-45-67</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">Китай
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>+7 965 123-45-67</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петрова Марья Андреевна», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>+7 965 123-45-67</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петрова Марья Андреевна
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Иванов Иван Иванович», Россия, RUB">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>+7 965 123-45-67</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd">Россия
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(255,0,0);">RUB </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h3>Найдены получатели</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">получателя</span>
+				</th>
+				<th colspan="1" class="confluenceTh"><span>ФИО </span><br /><span>получателя</span>
+				</th>
+				<th colspan="1" class="confluenceTh"><span><span style="color: rgb(0,0,0);">Телефон</span> получателя</span>
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a>
+				</td>
+				<td colspan="1" class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>+7 965 123-45-67</mark>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2>Результат поиска по карте клиента «001-004-7415»</h2>
+<h3>Найдены отправители</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">отправителя</span>
+				</th>
+				<th class="confluenceTh">ФИО <br />отправителя
+				</th>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Карта клиента</span> отправителя
+				</th>
+				<th colspan="1" class="confluenceTh">→
+				</th>
+				<th class="confluenceTh">ФИО <br />получателя
+				</th>
+				<th class="confluenceTh">Страна <br />получения
+				</th>
+				<th class="confluenceTh">Валюта <br />получения
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», Китай, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>001-004-7415</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">Китай
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>001-004-7415</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петрова Марья Андреевна», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd"><mark>001-004-7415</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петрова Марья Андреевна
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Иванов Иван Иванович», Россия, RUB">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>001-004-7415</mark>
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd">Россия
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(255,0,0);">RUB </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h3>Найдены получатели</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">получателя</span>
+				</th>
+				<th colspan="1" class="confluenceTh">ФИО <br />получателя
+				</th>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Карта клиента</span> получателя
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a>
+				</td>
+				<td colspan="1" class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>001-004-7415</mark>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2>Результат поиска по ФИО «Иванов Иван» и дате рождения «10.09.1977»</h2>
+<h3>Найдены отправители</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">отправителя</span>
+				</th>
+				<th class="confluenceTh">ФИО <br />отправителя
+				</th>
+				<th colspan="1" class="confluenceTh">→
+				</th>
+				<th class="confluenceTh">ФИО <br />получателя
+				</th>
+				<th class="confluenceTh">Страна <br />получения
+				</th>
+				<th class="confluenceTh">Валюта <br />получения
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», Китай, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd"><mark>Иванов Иван</mark> Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">Китай
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петров Петр Петрович», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd"><mark>Иванов Иван</mark> Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петров Петр Петрович
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Петрова Марья Андреевна», ОАЭ, USD">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd"><mark>Иванов Иван</mark> Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Петрова Марья Андреевна
+				</td>
+				<td class="confluenceTd">ОАЭ
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(0,128,0);">USD</span>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → «Иванов Иван Иванович», Россия, RUB">Повторить</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a><!--
+					--><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a>
+				</td>
+				<td class="confluenceTd"><mark>Иванов Иван</mark> Иванович
+				</td>
+				<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">→</span>
+				</td>
+				<td class="confluenceTd">Иванов Иван Иванович
+				</td>
+				<td class="confluenceTd">Россия
+				</td>
+				<td class="confluenceTd"><span style="color: rgb(255,0,0);">RUB </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h3>Найдены получатели</h3>
+<div class="table-wrap">
+	<table class="confluenceTable">
+		<tbody>
+			<tr>
+				<th colspan="1" class="confluenceTh"><span style="color: rgb(0,0,0);">Действия для </span><br /><span style="color: rgb(0,0,0);">получателя</span>
+				</th>
+				<th colspan="1" class="confluenceTh">ФИО <br />получателя
+				</th>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a>
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>Иванов Иван</mark> Иванович
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1" class="confluenceTd"><a href="/pages/viewpage.action?pageId=8389423" title="Выдать перевод: «Иванов Иван Иванович» ← некий отправитель">Выдать</a><!--
+					--><a href="/pages/viewpage.action?pageId=622775" title="Отправить перевод: «Иванов Иван Иванович» → новый
+						  получатель">Отправить</a>
+				</td>
+				<td colspan="1" class="confluenceTd"><mark>Иванов Иван</mark> Николаевич
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	</div>
+
+	<footer>
+		<div class="debug"></div>
+	</footer>
+
+	<!--[if lt IE 9]>
+		<script data-src="js/vendor/es5-shim.min.js?v=4.0.3">/* http://github.com/es-shims/es5-shim/ Пока не потребовалось, на будущее */</script>
+		<script src="js/vendor/jquery-1.11.1.min.js">/* https://code.jquery.com/ */</script>
+		<script src="js/vendor/jquery.placeholder.min.js?v=0.2.4">/*
+			https://github.com/matoilic/jquery.placeholder
+			https://github.com/mathiasbynens/jquery-placeholder -- вот второй плагин, если первый будет глючить
+		*/</script>
+	<![endif]-->
+
+	<![if gte IE 9]>
+		<script src="js/vendor/jquery-2.1.1.min.js">/* https://code.jquery.com/ */</script>
+	<![endif]>
+
+	<script src="js/vendor/jquery.pseudo_selectors2classes.js?v=2.5"></script>
+	<script src="js/vendor/jquery.input_filters.js?v=2.3"></script>
+	<script src="js/vendor/jquery.tooltip.js?v=3.2.0"></script>
+	<script src="js/vendor/jquery.validate.min.js">/* http://jqueryvalidation.org/ */</script>
+	<script src="js/vendor/jquery.validate.messages_ru.min.js">/* подгружаем локализацию только если язык интерфейса -- русский! */</script>
+	<script src="js/vendor/jquery.hotkeys.js?v=0.8">/* https://github.com/jeresig/jquery.hotkeys */</script>
+	<script src="js/vendor/jquery.textarea_autoresize.min.js?v=1.4">/*
+		http://jquerylist.ru/forms/jquery-plugin-autoresize.html,
+		https://github.com/brandonaaron/jquery-expandable
+	*/</script>
+	<script src="js/vendor/knockout.min.js?v=3.2.0">/* http://knockoutjs.com/ */</script>
+	<script src="js/input-filter.js"></script>
+	<script src="js/general.js"></script>
+	
+	<script src="js/pages/search_client.js"></script>
+	
+
+	<script>
+		/*
+		Этот пустой блок с тэгом <script> удалять нельзя.
+		Он используется для оперативных правок прямо на продуктивном/тестовом сервере.
+		*/
+	</script>
+
+</body>
+</html>
