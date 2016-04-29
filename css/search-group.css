@@ -1,0 +1,73 @@
+/*Блок с кнопками [найти] и [отменить] рядом с полем ввода */
+.search-group {
+	display: inline-block; *display: inline; zoom: 1;
+	white-space: nowrap;
+	font-size: 12px;
+	margin-left: 10px;
+	max-width: 140px;
+	overflow: hidden;
+	vertical-align: middle;
+	*margin-top: -5px;
+}
+.search-group * + * /*owl*/ {
+	margin-left: 10px;
+}
+.search-group button.cancel,
+.search-group .result-found,
+.search-group .result-not-found {
+	display: none;
+}
+.search-group .result-not-found {
+	color: red;
+}
+.search-group button {
+	font-size: 12px;
+	*font-size: 11px;
+	color: #333;
+	background-color: #DCE8FD;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	padding: 1px 5px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	*margin-bottom: 1px;
+	/*
+	*filter: none;
+	*background-image: none;
+	*width: 60px;
+	*/
+}
+
+/*
+.search-group button .corner,
+.search-group button.focus .corner {
+	*background-image: none!important;
+}
+*/
+
+.search-group button.opacity {
+	filter: alpha(opacity=40); /* IE 6-7 */
+	opacity: 0.4;
+}
+
+.search-group button:hover {
+	filter: alpha(opacity=100); /* IE 6-7 */
+	opacity: 1;
+	border-color: #bbb;
+	/**background-image: none;*/
+}
+
+/*.search-group button:focus,*/
+.search-group button.focus {
+	filter: alpha(opacity=100); /* IE 6-7 */
+	opacity: 1;
+	border-color: #0082DD;
+	/**background-image: none;*/
+}
+
+/*.search-group button:disabled,*/
+.search-group button.disabled {
+	filter: alpha(opacity=100); /* IE 6-7 */
+	opacity: 1;
+	color: #999;
+}

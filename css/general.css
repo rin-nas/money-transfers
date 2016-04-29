@@ -1,0 +1,233 @@
+/* Global */
+	* {
+		outline: none;
+	}
+	body {
+		color: #000;
+		font-family: Arial,sans-serif;
+		font-size: 13px;
+		margin: 0px;
+		padding: 0px;
+	}
+	header {
+		margin-bottom: 25px;
+	}
+	footer {
+		text-align: center;
+	}
+	img {
+		border: 0;
+	}
+	a {
+		color: #3b73af;
+		text-decoration: none;
+	}
+	a:active {
+		color: #326ca6;
+	}
+	a:link,
+	a:visited,
+	a:active {
+		text-decoration: none;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+	/* a:focus, */
+	a.focus {
+		outline: 1px dotted #0082DD;
+		*behavior: expression(runtimeStyle.behavior='none',hideFocus=0); /* IE7: включаем обводку вокруг ссылок в фокусе, т.к. outline не работает */
+		/* DEPRECATED
+		padding: 0 2px;
+		margin: 0 -2px;
+		*/
+	}
+	mark {
+		background-color: #ffd;
+	}
+	label {
+		white-space: nowrap;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+		cursor: default;
+		*behavior: expression(runtimeStyle.behavior='none',this.unselectable='on');
+	}
+
+	.nowrap {
+		white-space: nowrap;
+	}
+
+	/* http://css-tricks.com/snippets/css/clear-fix/ */
+	.clear {
+		clear: both;
+	}
+
+	.container {
+		padding: 20px;
+	}
+
+/* Other various */
+	.date-group {
+		display: inline-block; *display: inline; zoom: 1;
+		font-size: 12px;
+		color: gray;
+	}
+	* + .date-group {
+		margin-left: 15px;
+	}
+	* + .radio-item-group {
+		margin-top: 8px;
+	}
+
+	.tel-plus {
+		position: relative;
+		display: inline-block; *display: inline; zoom: 1;
+		width: 8px;
+		padding-left: 4px;
+		margin-right: -12px;
+		margin-top: -3px;
+		vertical-align: middle;
+		font-family: monospace;
+		font-size: 14px;
+	}
+
+	.required {
+		color: red;
+		font-family: monospace;
+		line-height: 14px;
+		font-weight: bold;
+	}
+	.lt-ie9 .required {
+		font-family: "Times New Roman";
+	}
+
+	.caption-group {
+		text-align: left;
+		font-weight: bold;
+		/*background-color: #ffd;*/
+		padding: 0px 4px 0 4px;
+	}
+	table.group {
+		width: 100%;
+		overflow: hidden;
+		border-spacing: 13px;
+		behavior: expression(runtimeStyle.behavior='none',cellSpacing='13px');  /* border-spacing for IE7 */
+	}
+	table.group td:first-child {
+		vertical-align: top;
+		padding-top: 5px;
+		text-align: right;
+		min-width: 130px;
+		width: 130px;
+	}
+	table.group td[colspan="2"]:first-child,
+	table.group td[colspan="3"]:first-child,
+	table.group td[colspan="4"]:first-child,
+	table.group td[colspan="5"]:first-child,
+	table.group td[colspan="6"]:first-child {
+		padding-top: 0px;
+		text-align: left;
+		*width: auto;
+	}
+
+	table.group-inline {
+		display: inline-block; *display: inline; zoom: 1;
+		vertical-align: top;
+		border-spacing: 13px;
+		behavior: expression(runtimeStyle.behavior='none',cellSpacing='13px');  /* border-spacing for IE7 */
+	}
+	table.group-inline td:first-child {
+		vertical-align: top;
+		padding-top: 5px;
+		text-align: right;
+		min-width: 115px;
+		width: 115px;
+	}
+	table.group-inline td[colspan="2"]:first-child,
+	table.group-inline td[colspan="3"]:first-child,
+	table.group-inline td[colspan="4"]:first-child,
+	table.group-inline td[colspan="5"]:first-child,
+	table.group-inline td[colspan="6"]:first-child {
+		padding-top: 0px;
+		text-align: left;
+		*width: auto;
+	}
+
+/* Currencies */
+	.rub {color:darkred}
+	.usd {color:darkgreen}
+	.eur {color:darkblue}
+	.aed {color:rgb(199,111,3)}
+
+/* Scroll bars,
+	http://css-tricks.com/custom-scrollbars-in-webkit/
+	http://jscrollpane.kelvinluck.com/ -- jScrollPane - cross browser styleable scrollbars with jQuery and CSS
+*/
+	.tab-content-inside::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
+	.tab-content-inside::-webkit-scrollbar-track {
+		/* border-radius: 3px; */
+		background-color: #eee;
+	}
+	.tab-content-inside::-webkit-scrollbar-thumb {
+		/* border-radius: 3px; */
+		background-color: #ccc;
+	}
+	.tab-content-inside::-webkit-scrollbar-thumb:hover {
+		background-color: #aaa;
+	}
+
+/* Corners for IE < 9 */
+	.lt-ie9 .corner {
+		position: absolute;
+		display: block;
+		font-size: 0;
+		overflow: hidden;
+		background-repeat: no-repeat;
+		background-color: transparent;
+		width: 10px;
+		height: 10px;
+		zoom: 1;
+	}
+	.lt-ie9 .corner.top-left {
+		top: 0;
+		left: 0;
+		background-position: top left;
+	}
+	.lt-ie9 .corner.top-right {
+		top: 0;
+		right: 0;
+		background-position: top right;
+	}
+	.lt-ie9 .corner.bottom-left {
+		bottom: 0;
+		left: 0;
+		background-position: bottom left;
+	}
+	.lt-ie9 .corner.bottom-right {
+		bottom: 0;
+		right: 0;
+		background-position: bottom right;
+	}
+
+	.lt-ie9 .corner.top-left.offset-1 {
+		top: -1px;
+		left: -1px;
+	}
+	.lt-ie9 .corner.top-right.offset-1 {
+		top: -1px;
+		right: -1px;
+	}
+	.lt-ie9 .corner.bottom-left.offset-1 {
+		bottom: -1px;
+		left: -1px;
+	}
+	.lt-ie9 .corner.bottom-right.offset-1 {
+		bottom: -1px;
+		right: -1px;
+	}

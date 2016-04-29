@@ -1,0 +1,34 @@
+.mt,
+.providers,
+.news {
+    width: 348px;
+}
+.providers .tab-content {
+    padding: 8px 0 8px 0;
+    height: 134px;
+}
+.providers .tab-content-inside {
+    height: 100%;
+    overflow-y: auto;
+}
+.providers .tabs-group ul {
+    margin: 0;
+    padding: 0 11px;
+}
+.providers .tabs-group li {
+    list-style: none;
+}
+.providers .tabs-group li + li {
+    margin-top: 7px;
+}
+/*.providers input[type=search],*/
+.providers input.search {
+    /*width: calc(100% - 69px); из-за IE7-8 пришлось отказаться и обернуть элемент в контейнер*/
+    width: 100%;
+    *width: 190px; /* IE 7*/
+    *margin-left: -20px; /* IE 7*/
+}
+.providers .input-search-wrapper {
+    width: 235px;
+    *width: 220px; /* IE 7*/
+}

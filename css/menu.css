@@ -1,0 +1,131 @@
+/* Dropdown menu */
+.dd-menu {
+	position: relative;
+	z-index: 100;
+	display: inline-block; *display: inline; zoom: 1;
+	margin: 0;
+	padding: 0;
+	margin-top: 15px;
+	border: 1px solid #fff;
+	background-color: #fff;
+	list-style: none;
+	vertical-align: top;
+	border-radius: 3px 3px 0px 0px ;
+}
+.dd-menu.focusin,
+.dd-menu:hover {
+	border-color: #ddd;
+}
+
+.dd-menu li {
+	position: relative;
+	padding: 0;
+	float: left;
+}
+.dd-menu li.focusin,
+.dd-menu li:hover {
+	background-color: #DCE8FD;
+}
+
+.dd-menu li.info {
+	padding: 8px 60px 8px 40px;
+	line-height: 16px;
+	font-size: 13px;
+	white-space: nowrap;
+}
+.dd-menu li.info:hover {
+	background-color: transparent;
+}
+
+.dd-menu a {
+	display: block;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: normal;
+	color: #555;
+	text-decoration: none;
+	outline: none;
+	*behavior: expression(runtimeStyle.behavior='none',hideFocus=1); /* IE7: выключаем обводку вокруг ссылок в фокусе, т.к. outline не работает */
+}
+.dd-menu a:hover {
+	background-color: #C7DFFF;
+	/*color: #000;*/
+}
+
+.dd-menu a:focus,
+.dd-menu a.focus {
+	background-color: #C7DFFF;
+}
+
+
+.dd-menu ul {
+	position: absolute;
+	z-index: 101;
+	left: -9999px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+/*	text-align: left;*/
+	list-style: none;
+	margin: 0;
+	padding: 5px 0 5px 0;
+	border-radius: 0px 0px 3px 3px;
+	box-shadow: 1px 2px 2px #ddd;
+	/*left: -1px; top: auto; /*DEBUG*/
+}
+
+.dd-menu li li {
+	background-color: #fff;
+	float: none;
+	line-height: 13px;
+}
+.dd-menu li li:hover {
+	background: #C7DFFF;
+}
+.dd-menu ul a {
+	position: relative;
+	padding: 8px 60px 8px 40px;
+	color: #000;
+	line-height: 16px;
+	font-size: 13px;
+	text-align: left;
+	min-width: 130px;
+	white-space: nowrap;
+}
+.lt-ie9 .dd-menu ul a {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+}
+.dd-menu ul a .fa {
+	position: absolute;
+	color: #bbb;
+	top: 10px;
+	*top: 9px;
+	left: 10px;
+	cursor: pointer;
+}
+.dd-menu ul a .hot-key {
+	position: absolute;
+	color: #aaa;
+	top: 8px;
+	*top: 9px;
+	right: 12px;
+	cursor: pointer;
+}
+
+.dd-menu li.focusin ul,
+.dd-menu li:hover ul {
+	left: -1px;
+	top: auto;
+}
+.dd-menu li:hover ul ul,
+.dd-menu li:hover ul ul ul,
+.dd-menu li:hover ul ul ul ul {
+	left: -9999px;
+	top: 0;
+}
+
+.dd-menu .splitter {
+	margin: 5px 0 5px 0;
+	border-top: 1px solid #e0e0e0;
+}

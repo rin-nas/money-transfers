@@ -1,0 +1,52 @@
+.confluenceTable, .table-wrap {
+    margin: 10px 0 0 0;
+    overflow-x: auto;
+}
+
+.confluenceTable, .table-wrap {
+    margin: 10px 0 0 0;
+    overflow-x: auto;
+}
+.confluenceTable {
+    border-collapse: collapse;
+}
+.confluenceTh, .confluenceTd {
+    border: 1px solid #ddd;
+    padding: 7px 10px;
+    vertical-align: top;
+    text-align: left;
+}
+
+table.confluenceTable tr:nth-child(odd) {
+    background-color: #efefef;
+}
+table.confluenceTable tr + tr:hover {
+    background-color: #e0f0ff;
+}
+table.confluenceTable tr:hover > td * {
+    visibility: visible;
+}
+table.confluenceTable tr:hover > td a:hover {
+    background: #D0DDEA;
+    text-decoration: none;
+}
+table.confluenceTable td * {
+    visibility: hidden;
+}
+table.confluenceTable td + td * {
+    visibility: visible;
+}
+table.confluenceTable td > a {
+    display: inline-block;
+    padding: 3px 5px;
+    margin: -3px 0px;
+    border-radius: 3px;
+}
+
+form.search button.search {
+    width: 65px;
+}
+form.search button.cancel {
+    visibility: hidden;
+    margin-left: 5px;
+}

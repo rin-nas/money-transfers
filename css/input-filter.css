@@ -1,0 +1,38 @@
+.filter-indicator {
+	position: absolute;
+	width: 14px;
+	margin: 6px 0 0 -18px;
+	font-family: sans-serif;
+	font-size: 9px;
+	line-height: 1.42;
+	text-transform: uppercase;
+	text-align: center;
+	color: #fff;
+	background-color: rgb(28, 150, 43);
+	visibility: hidden;
+	display: inline;
+	/**display: expression(innerText == '' ? 'none' : 'inline');  /*:empty for IE7*/
+}
+
+.filter-indicator-error {
+	background-color: rgb(255, 58, 58); /*red*/
+}
+
+input.filter,
+textarea.filter {
+	padding-right: 20px;
+}
+
+/*input:focus + .filter-indicator,
+textarea:focus + .filter-indicator,*/
+input.focus + .filter-indicator,
+textarea.focus + .filter-indicator {
+	visibility: visible;
+}
+
+/*input.filter-error:focus,
+textarea.filter-error:focus,*/
+input.filter-error.focus,
+textarea.filter-error.focus {
+	border-color: rgb(255, 58, 58)!important; /*red*/
+}

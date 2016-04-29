@@ -1,0 +1,118 @@
+.sum {
+    font-family: monospace;
+    font-size: 14px;
+    color: #000;
+}
+.sum-aligned {
+    width: 70px;
+    padding: 2px;
+    padding-right: 4px;
+    display: inline-block; *display: inline; zoom: 1;
+    text-align: right;
+    font-family: monospace;
+    font-size: 14px;
+    color: #000;
+}
+.currency {
+    width: 70px;
+    padding: 2px;
+    margin-left: 4px;
+    display: inline-block; *display: inline; zoom: 1;
+}
+.doc-number-caption {
+    display: inline-block; *display: inline; zoom: 1;
+    padding: 4px 10px 0 15px;
+    vertical-align: top
+}
+a.copy-from-sender,
+a.extra-fields-toggle-group {
+    float: right;
+    font-size: 13px;
+    font-weight: normal;
+}
+a.copy-from-sender {
+    padding: 5px;
+}
+
+.mt {
+    *width: 544px;
+}
+.sender,
+.recipient {
+    *width: 480px;
+}
+
+.mt .discount-group,
+.mt .point-location-group,
+.mt .calc-result-group,
+.mt .restrictions-group,
+.sender .extra-fields-group,
+.sender .extra-doc-group,
+.sender .identify-full-group,
+.recipient .location-group,
+.recipient .extra-fields-group {
+    display: none;
+}
+
+/* mt */
+.mt table.group.calc-result-group td:first-child {
+    padding-top: 4px;
+    *padding-top: 3px;
+}
+
+.mt .dynamic-discount-group {
+    margin-left: -20px;
+    display: none;
+}
+.mt .bank-account-group {
+    margin-top: 4px;
+    display: none;
+}
+.mt .bank-account-group div {
+    margin-top: 10px;
+}
+.mt .point-location-group {
+    margin-top: 14px;
+}
+
+.mt .restrictions-message {
+    display: block;
+    border: 1px solid rgb(255, 158, 158);
+    padding: 5px;
+}
+.mt .restrictions-message:hover {
+    border: 1px solid rgb(255, 89, 89);
+}
+
+.mt .calc-method + label.radio {
+    width: 60px;
+}
+.mt .funds-source + label.radio {
+    width: 75px;
+}
+.mt .purpose + label.radio {
+    width: 130px;
+}
+.mt .recive-where + label.radio {
+    width: 100px;
+}
+.mt .partner-system + label.radio {
+    width: 283px;
+}
+
+/* sender */
+.sender .client-card-group,
+.sender .client-card-info-group {
+    vertical-align: top;
+    display: inline-block; *display: inline; zoom: 1;
+}
+.sender .client-card-info {
+    display: inline-block; *display: inline; zoom: 1;
+    border: 1px solid rgb(255, 158, 158);
+    padding: 3px 6px;
+    border-radius: 5px;
+    text-align: center;
+}
+.sender .client-card-info:hover {
+    border: 1px solid rgb(255, 89, 89);
+}

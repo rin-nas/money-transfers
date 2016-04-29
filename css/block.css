@@ -1,0 +1,88 @@
+section.block {
+	margin: 0px 40px 40px 0;
+}
+.block {
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+
+}
+.block-caption {
+	display: block;
+	color: #777;
+	background-color: #eee;
+	border-bottom: 1px solid #ddd;
+	border-radius: 3px 3px 0 0;
+	padding: 7px 10px;
+	font-size: 18px;
+	/*line-height: 29px;*/
+	vertical-align: bottom;
+	overflow: hidden;
+}
+.block-caption button.close {
+	float: right;
+	border: 0;
+	margin-right: -3px;
+	font-size: inherit;
+	background: inherit;
+	color: #ddd;
+	visibility: hidden;
+}
+.block-content {
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	overflow: hidden;
+}
+
+.block-step {
+	width: 26px;
+	height: 26px;
+	overflow: hidden;
+	*margin-bottom: -3px;  /* overflow: hidden; в IE7 не сработал */
+	margin-right: 8px;
+}
+.block-step .round {
+	line-height: 29px;
+	font-size: 29px;
+	color: #ccc;
+}
+.block-step .digit {
+	line-height: 29px;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	font-style: normal;
+	color: #777;
+}
+
+
+.block:hover,
+.block.focusin {
+	border: 1px solid #bbb;
+
+}
+
+.block:hover .block-caption,
+.block.focusin .block-caption {
+	color: #000;
+}
+
+.block:hover .block-step .round,
+.block.focusin .block-step .round {
+	color: #bbb;
+}
+.block:hover .block-step .digit,
+.block.focusin .block-step .digit {
+	color: #000;
+}
+
+.block:hover button.close,
+.block.focusin button.close {
+	color: #bbb;
+	visibility: visible;
+}
+.block button.close:hover {
+	color: #777;
+}

@@ -1,0 +1,42 @@
+input.money {
+	width: 85px;
+	text-align:right;
+}
+input.bank-account {
+	width: 200px;
+}
+input.doc-issue-code,
+input.client-card {
+	width: 100px;
+}
+input.doc-serial {
+	width: 47px;
+}
+input.doc-number {
+	width: 70px;
+}
+input.person-name,
+input.mt-number {
+	width: 150px;
+}
+input.person-name {
+	text-transform: capitalize;
+}
+input.mt-number,
+input.doc-serial,
+input.doc-number {
+	text-transform: uppercase;
+}
+input.country,
+input.city {
+	width:280px;
+}
+textarea.doc-issue,
+input.address,
+textarea.birth-place,
+textarea.extra {
+	width:297px;
+}
+select.doc-type {
+	width:305px;
+}

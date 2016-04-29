@@ -1,0 +1,19 @@
+.row,
+.cel {
+	display: block;
+	clear: both;
+	overflow: hidden;
+}
+.col {
+	display: block;
+	float: left;
+}
+.cel {
+	margin: 20px;
+}
+.col + .col {
+	margin-left: -20px;
+}
+.row + .row {
+	margin-top: -20px;
+}

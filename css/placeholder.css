@@ -1,0 +1,19 @@
+::-webkit-input-placeholder { /* Chrome и Safari */
+	color: #999;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+	color: #999;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+	color: #999;
+}
+
+:-ms-input-placeholder { /* IE10 */
+	color: #999;
+}
+
+.placeholder { /* IE7 - IE9 */
+	color: #888!important;
+}

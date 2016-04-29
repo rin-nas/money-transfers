@@ -1,0 +1,309 @@
+/*
+Для скруглённых уголков в старых IE есть решение PIE http://css3pie.com/
+Я провёл эксперимент -- оно тормозит и явл. источником неожиданных ошибок, не использовать!
+Для закругления элементов ввода используюся фоновые картинки-спрайты! /Rin/
+*/
+
+/* Enabled */
+	select {
+		height: 23px;
+		border: 1px solid #aaa;
+		color: #000;
+	}
+	input[type="text"],
+	input[type="email"],
+	input[type="search"],
+	input[type="url"],
+	input[type="tel"],
+	input[type="number"],
+	input[type="date"],
+	textarea {
+		border: 1px solid #aaa;
+		padding: 2px 3px;
+		font-family: monospace;
+		font-size: 14px;
+		color: #000;
+		margin: 0;
+	}
+	.lt-ie9 input[type="text"],
+	.lt-ie9 textarea {
+		*margin-right: 1px;
+		*margin-bottom: 1px;
+	}
+	input[type="number"],
+	input[type="date"] {
+		padding: 1px 1px 1px 3px;
+		height: 19px;
+	}
+	input[type="date"], input.date {
+		width: 130px;
+	}
+	input[type="url"], input.url,
+	input[type="search"], input.search {
+		width: 200px;
+	}
+	input[type="tel"], input.tel {
+		width: 138px;
+		padding-left: 12px;
+	}
+	input[type="email"], input.email {
+		width: 210px;
+	}
+	input[type="radio"],
+	input[type="checkbox"] {
+		position: absolute;
+		filter: alpha(opacity=0); /* IE 6-7 */
+		opacity: 0;
+    	width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	input ~ input[type="text"],
+	input ~ input[type="email"],
+	input ~ input[type="search"],
+	input ~ input[type="url"],
+	input ~ input[type="tel"],
+	input ~ input[type="number"],
+	input ~ input[type="date"] {
+		margin-left: 15px;
+	}
+
+	label.radio,
+	label.checkbox {
+		position: relative;
+		display: inline-block; *display: inline; zoom: 1;
+		border: 1px solid #bbb;
+		padding: 3px 10px 3px 10px;
+		background-color: #fff;
+		text-align: center;
+	}
+	.lt-ie9 label.radio,
+	.lt-ie9 label.checkbox {
+		padding: 2px 10px 3px 10px;
+	}
+
+	.lt-ie9 label.radio .corner,
+	.lt-ie9 label.checkbox .corner {
+		background-image: url(/img/radio-corner.png);
+	}
+
+	label.radio ~ label.radio {
+		margin-left: -1px;
+	}
+
+	label.radio:first-of-type,
+	label.radio.first-of-type {
+		border-radius: 10px 0 0 10px;
+		/* закомментировал и перенёс в JS, чтобы IE7 меньше тормозил на этапе загрузки */
+		/**zoom: expression(runtimeStyle.zoom=1,innerHTML+='<span\ class="corner\ top-left\ offset-1"></span><span\ class="corner\ bottom-left\ offset-1"></span>'); /**/
+	}
+
+	label.radio:last-of-type,
+	label.radio.last-of-type {
+		border-radius: 0 10px 10px 0;
+		/* закомментировал и перенёс в JS, чтобы IE7 меньше тормозил на этапе загрузки */
+		/**zoom: expression(runtimeStyle.zoom=1,innerHTML+='<span\ class="corner\ top-right\ offset-1"></span><span\ class="corner\ bottom-right\ offset-1"></span>'); /**/
+	}
+
+	label.checkbox,
+	label.radio:first-of-type:last-of-type,
+	label.radio.first-of-type.last-of-type {
+		border-radius: 10px;
+		/* закомментировал и перенёс в JS, чтобы IE7 меньше тормозил на этапе загрузки */
+		/**zoom: expression(runtimeStyle.zoom=1,innerHTML+='<span\ class="corner\ top-left\ offset-1"></span><span\ class="corner\ bottom-left\ offset-1"></span><span\ class="corner\ top-right\ offset-1"></span><span\ class="corner\ bottom-right\ offset-1"></span>'); /**/
+	}
+
+	label.checkbox > .fa-check {
+		padding-right: 2px;
+		color: #bbb;
+	}
+
+	button {
+		position: relative;
+		color: #000;
+		background-color: #DCE8FD;
+		border: 1px solid #bbb;
+		border-radius: 3px;
+		padding: 3px 4px;
+		line-height: 15px;
+		overflow: hidden;
+		cursor: default;
+		font-size: 13px;
+	}
+	button.fixed {
+		width: 142px;
+		height: 40px;
+	}
+	button.large {
+		padding: 6px 8px;
+		font-size: 18px;
+	}
+	.lt-ie9 button.fixed {
+		padding-top: 2px;
+	}
+
+	button.with-icon {
+		text-align: right;
+		padding-left: 32px;
+	}
+	button.with-icon i {
+		position: absolute;
+		left: 7px;
+		top: 14px;
+		color: #555;
+	}
+	.lt-ie9 button.with-icon i {
+		top: 10px;
+	}
+
+	.button-group * ~ button {
+		margin-left: 13px;
+	}
+	.button-group * ~ button.large {
+		margin-left: 16px;
+	}
+
+/* Checked */
+	select option:checked {
+		background-color: #ddd;
+	}
+	/* input:checked + label,
+	input:checked + label, */
+	input.checked + label.radio,
+	input.checked + label.checkbox {
+		background-color: #e4e4e4;
+
+	}
+	/* input:checked + label.checkbox > .fa-check, */
+	input.checked + label.checkbox > .fa-check {
+		color: #333;
+	}
+
+/* Hover (should be before disabled block) */
+	textarea:hover,
+	select:hover,
+	input[type="text"]:hover,
+	input[type="email"]:hover,
+	input[type="search"]:hover,
+	input[type="url"]:hover,
+	input[type="tel"]:hover,
+	input[type="number"]:hover,
+	input[type="date"]:hover {
+		border-color: #777;
+	}
+	label.radio:hover,
+	label.checkbox:hover {
+		border-color: #777;
+		z-index: 2;
+	}
+	.lt-ie9 label.radio:hover .corner,
+	.lt-ie9 label.checkbox:hover .corner {
+		background-image: url(/img/radio-corner-hover.png);
+	}
+	button.enabled:hover {
+		border-color: #999;
+		background-color: #C7DFFF;
+	}
+
+/* Focus */
+	*.focus {
+		behavior: expression(runtimeStyle.behavior='none',hideFocus=1); /* IE7: выключаем обводку на элементах в фокусе (для <button> не работает) */
+	}
+
+	/*
+	button:focus,
+	textarea:focus,
+	select:focus,
+	input[type="text"]:focus,
+	input[type="email"]:focus,
+	input[type="search"]:focus,
+	input[type="url"]:focus,
+	input[type="tel"]:focus,
+	input[type="number"]:focus,
+	input[type="date"]:focus,
+	input:focus + label.radio,
+	input:focus + label.checkbox,*/
+	button.focus,
+	textarea.focus,
+	select.focus,
+	input.focus,
+	input.focus + label.radio,
+	input.focus + label.checkbox {
+		border-color: #0082DD!important; /* http://www.colorhexa.com/0082dd */
+		box-shadow: 0 0 5px skyblue; /*<x-offset> <y-offset> <blur-radius> <color>*/
+	}
+
+	.lt-ie9 input.focus,
+	.lt-ie9 textarea.focus,
+	.lt-ie9 select.focus {
+		/* http://www.useragentman.com/blog/2011/08/24/how-to-simulate-css3-box-shadow-in-ie7-8-without-javascript/ */
+		zoom: 1;
+		margin: -1px 0px 0px -1px;
+		filter: progid:DXImageTransform.Microsoft.Shadow(Color=skyblue, Strength=1, Direction=0),
+			progid:DXImageTransform.Microsoft.Shadow(Color=skyblue, Strength=1, Direction=90),
+			progid:DXImageTransform.Microsoft.Shadow(Color=skyblue, Strength=1, Direction=180),
+			progid:DXImageTransform.Microsoft.Shadow(Color=skyblue, Strength=1, Direction=270);
+	}
+
+	/* input[type="radio"]:focus + label, */
+	input.focus + label.radio {
+		z-index: 3;
+	}
+
+	.lt-ie9 input.focus + label.radio .corner,
+	.lt-ie9 input.focus + label.checkbox .corner {
+		background-image: url(/img/radio-corner-focus.png)!important;
+	}
+
+/* Readonly */
+	/* input[type="text"]:read-only,
+	input[type="email"]:read-only,
+	input[type="search"]:read-only,
+	input[type="url"]:read-only,
+	input[type="tel"]:read-only,
+	input[type="number"]:read-only,
+	input[type="date"]:read-only,
+	textarea:read-only, */
+	input[type="text"].read-only,
+	input[type="email"].read-only,
+	input[type="search"].read-only,
+	input[type="url"].read-only,
+	input[type="tel"].read-only,
+	input[type="number"].read-only,
+	input[type="date"].read-only,
+	textarea.read-only {
+		border-color: #e4e4e4;
+		cursor: text;
+	}
+/* Disabled (should be after hover block) */
+	/* input:disabled + label.radio,
+	input:disabled + label.checkbox, */
+	input.disabled + label.radio,
+	input.disabled + label.checkbox {
+		color: #aaa;
+		cursor: not-allowed;
+
+	}
+	/* input[type="text"]:disabled,
+	input[type="email"]:disabled,
+	input[type="search"]:disabled,
+	input[type="url"]:disabled,
+	input[type="tel"]:disabled,
+	input[type="number"]:disabled,
+	input[type="date"]:disabled, */
+	input.disabled {
+		background-color: #fff;
+		border-color: #e4e4e4;
+		color: #aaa;
+		cursor: not-allowed;
+	}
+	/* button:disabled, */
+	button.disabled {
+		color: #999;
+		background-color: #eee;
+		border-color: #ccc;
+		cursor: not-allowed;
+		opacity: 1;
+		filter: alpha(opacity=100); /* IE 6-7 */
+	}
